@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilChangeTracker", "OilChangeTracker\OilChangeTracker.csproj", "{D889198A-17A9-4599-AA8E-9FAE72652942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilChangeTracker.Tests", "OilChangeTracker.Tests\OilChangeTracker.Tests.csproj", "{437F439D-5A76-44A0-886E-FDD560F26C71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D889198A-17A9-4599-AA8E-9FAE72652942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D889198A-17A9-4599-AA8E-9FAE72652942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D889198A-17A9-4599-AA8E-9FAE72652942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D889198A-17A9-4599-AA8E-9FAE72652942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437F439D-5A76-44A0-886E-FDD560F26C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437F439D-5A76-44A0-886E-FDD560F26C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437F439D-5A76-44A0-886E-FDD560F26C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437F439D-5A76-44A0-886E-FDD560F26C71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3F3A346-7717-44F6-999D-B7BE987B20E6}
+	EndGlobalSection
+EndGlobal

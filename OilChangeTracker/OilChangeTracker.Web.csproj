@@ -185,8 +185,13 @@
     <Compile Include="Migrations\201901071616534_InitialUsersAndVehicle.Designer.cs">
       <DependentUpon>201901071616534_InitialUsersAndVehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901071739417_AddedOilChangeEventTable.cs" />
+    <Compile Include="Migrations\201901071739417_AddedOilChangeEventTable.Designer.cs">
+      <DependentUpon>201901071739417_AddedOilChangeEventTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\OilChangeEvent.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -273,6 +278,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901071616534_InitialUsersAndVehicle.resx">
       <DependentUpon>201901071616534_InitialUsersAndVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901071739417_AddedOilChangeEventTable.resx">
+      <DependentUpon>201901071739417_AddedOilChangeEventTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

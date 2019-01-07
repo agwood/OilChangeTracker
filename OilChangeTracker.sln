@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilChangeTracker", "OilChangeTracker\OilChangeTracker.csproj", "{D889198A-17A9-4599-AA8E-9FAE72652942}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilChangeTracker.Web", "OilChangeTracker\OilChangeTracker.Web.csproj", "{D889198A-17A9-4599-AA8E-9FAE72652942}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilChangeTracker.Tests", "OilChangeTracker.Tests\OilChangeTracker.Tests.csproj", "{437F439D-5A76-44A0-886E-FDD560F26C71}"
 EndProject

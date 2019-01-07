@@ -99,9 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OilChangeTracker\OilChangeTracker.csproj">
+    <ProjectReference Include="..\OilChangeTracker\OilChangeTracker.Web.csproj">
       <Project>{D889198A-17A9-4599-AA8E-9FAE72652942}</Project>
-      <Name>OilChangeTracker</Name>
+      <Name>OilChangeTracker.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

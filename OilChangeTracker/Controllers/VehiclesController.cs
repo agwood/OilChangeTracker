@@ -2,6 +2,7 @@
 using OilChangeTracker.DataContexts;
 using OilChangeTracker.Models;
 using OilChangeTracker.ViewModels;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace OilChangeTracker.Controllers
@@ -49,6 +50,22 @@ namespace OilChangeTracker.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        // GET: All Vehicles
+        [Authorize]
+        public ActionResult Index()
+        {
+            var userId = User.Identity.GetUserId();
+            var vehicles = _context.Vehicles.Where(u => u.OwnerId == userId);
+
+            var viewModel = new VehicleViewModel()
+            {
+                Vehicles = vehicles
+            };
+
+            return View("Index", viewModel);
+
         }
     }
 

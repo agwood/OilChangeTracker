@@ -1,0 +1,62 @@
+﻿@model OilChangeTracker.ViewModels.OilChangeEventFormViewModel
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Create";
+}
+
+
+<h2>Add an Oil Change</h2>
+
+@using (Html.BeginForm("Create", "OilChangeEvents"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle)
+        @Html.DropDownListFor(m => m.Vehicle, new SelectList(Model.Vehicles, "Id", "Nickname"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vehicle)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.WorkDate)
+        @Html.TextBoxFor(m => m.WorkDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.WorkDate)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Mileage)
+        @Html.TextBoxFor(m => m.Mileage, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Mileage)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.OilFilterBrand)
+        @Html.TextBoxFor(m => m.OilFilterBrand, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OilFilterBrand)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.OilFilterModel)
+        @Html.TextBoxFor(m => m.OilFilterModel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OilFilterModel)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.OilBrand)
+        @Html.TextBoxFor(m => m.OilBrand, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OilBrand)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.OilViscosity)
+        @Html.TextBoxFor(m => m.OilViscosity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OilViscosity)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.OtherNotes)
+        @Html.TextBoxFor(m => m.OtherNotes, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OtherNotes)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

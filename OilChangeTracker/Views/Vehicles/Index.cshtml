@@ -1,0 +1,51 @@
+﻿@model OilChangeTracker.ViewModels.VehicleViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary list-panel" id="list-panel">
+            <div class="panel-heading list-panel-heading">
+                <h1 class="panel-title list-panel-title">Vehicle List</h1>
+            </div>
+
+            <div class="panel-body">
+                <table id="assets-data-table"
+                       class="table table-striped table-bordered"
+                       style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nickname</th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Vin</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var vehicle in Model.Vehicles)
+                        {
+                            <tr>
+                                <td>@vehicle.Nickname</td>
+                                <td>@vehicle.Make</td>
+                                <td>@vehicle.Model</td>
+                                <td>@vehicle.Year</td>
+                                <td>@vehicle.Vin</td>
+                                <td>@vehicle.Color</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@section Scripts
+{
+    <script type="text/javascript">
+     $(document).ready(function () {
+
+         $('#assets-data-table').DataTable();
+     });
+    </script>
+}*@

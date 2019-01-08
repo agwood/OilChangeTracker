@@ -389,7 +389,7 @@ namespace OilChangeTracker.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Vehicles");
         }
 
         //
@@ -446,7 +446,7 @@ namespace OilChangeTracker.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Vehicles");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

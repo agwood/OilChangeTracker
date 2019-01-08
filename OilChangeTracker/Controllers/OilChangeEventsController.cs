@@ -57,7 +57,7 @@ namespace OilChangeTracker.Controllers
             _context.OilChangeEvents.Add(oilChangeEvent);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Vehicles");
         }
     }
 }

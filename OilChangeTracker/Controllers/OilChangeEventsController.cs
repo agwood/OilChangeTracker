@@ -1,4 +1,5 @@
-﻿using OilChangeTracker.DataContexts;
+﻿using Microsoft.AspNet.Identity;
+using OilChangeTracker.DataContexts;
 using OilChangeTracker.Models;
 using OilChangeTracker.ViewModels;
 using System;
@@ -20,9 +21,11 @@ namespace OilChangeTracker.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
             var viewModel = new OilChangeEventFormViewModel
             {
-                Vehicles = _context.Vehicles.ToList()
+                
+                Vehicles = _context.Vehicles.Where(u => u.OwnerId == userId).ToList()
             };
 
             return View(viewModel);
@@ -36,11 +39,6 @@ namespace OilChangeTracker.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Vehicles = _context.Vehicles.ToList();
-
-                foreach (ModelState state in ViewData.ModelState.Values.Where(x => x.Errors.Count > 0))
-                {
-                    state.ToString();
-                }
                 return View("Create", viewModel);
             }
 

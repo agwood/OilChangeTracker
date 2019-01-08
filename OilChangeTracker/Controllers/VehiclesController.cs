@@ -49,7 +49,7 @@ namespace OilChangeTracker.Controllers
             _context.Vehicles.Add(vehicle);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Vehicles");
         }
 
         // GET: All Vehicles

@@ -8,15 +8,16 @@
 }
 
 
+
 <h2>Add an Oil Change</h2>
 
 @using (Html.BeginForm("Create", "OilChangeEvents"))
 {
-<div class="form-group">
-    @Html.LabelFor(m => m.Vehicle)
-    @Html.DropDownListFor(m => m.SelectedVehicleId, new SelectList(Model.Vehicles.ToList(), "Id", "Nickname"), "",  new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Vehicle)
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle)
+        @Html.DropDownListFor(m => m.SelectedVehicleId, new SelectList(Model.Vehicles.ToList(), "Id", "Nickname"), " -- Select Vehicle --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vehicle)
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.WorkDate)
         @Html.TextBoxFor(m => m.WorkDate, new { @class = "form-control" })
@@ -25,7 +26,7 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Mileage)
-        @Html.TextBoxFor(m => m.Mileage, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Mileage, new { @class = "form-control", placeholder = (Model.Mileage > 0 ? Model.Mileage.ToString() : ""), Value = "" })
         @Html.ValidationMessageFor(m => m.Mileage)
     </div>
     <div class="form-group">
@@ -59,4 +60,19 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#SelectedVehicleId").change(function () {
+                var id = $(this).val();
+                $.getJSON("@Url.Action("UpdateMileage","OilChangeEvents")", { id: id }, function (response) {
+                   $("#Mileage").attr("placeholder", response);
+                });
+            });
+        });
+
+    </script>
+
 }
+

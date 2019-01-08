@@ -43,5 +43,7 @@ namespace OilChangeTracker.ViewModels
         public string OtherNotes { get; set; }
 
         public int SelectedVehicleId { get; set; }
+
+        public bool VehicleSelectedAlready { get; set; }
     }
 }

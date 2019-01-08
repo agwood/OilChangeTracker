@@ -69,3 +69,7 @@ textarea {
 .font-bold {
     font-weight: 700;
 }
+
+select option:first-child {
+    font-weight: 700;
+}

@@ -36,10 +36,14 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 12px 12px 0px 0px;
 }
 
-    .panel > .panel-body {
-        background-color: #f0f0f0;
-        border-radius: 0px 0px 12px 12px;
-    }
+.panel > .panel-body {
+    background-color: #f0f0f0;
+}
+
+.panel > .panel-footer {
+    border-radius: 0px 0px 12px 12px;
+}
+
 .navbar {
     background-color: #0f74ce;
     border-color: #0f74ce;

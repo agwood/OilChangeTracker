@@ -2,63 +2,70 @@
 
 <div class="row">
     <h2>Vehicle List</h2>
-    <h3><span class="glyphicon glyphicon-plus"></span>@Html.ActionLink("Add a vehicle","Create", "Vehicles")</h3>
+    <h3><span class="glyphicon glyphicon-plus"></span>@Html.ActionLink("Add a vehicle", "Create", "Vehicles")</h3>
 </div>
 
 
-    
-    <div class="row">
-        @foreach (var vehicle in Model.Vehicles)
-        {
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading list-panel-heading"><h3 class="panel-title list-panel-title">@vehicle.Nickname</h3></div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <span class="pull-right"><strong>Make</strong></span>
-                            </div>
-                            <div class="col-sm-6 other">
-                                <span>@vehicle.Make</span>
-                            </div>
+
+<div class="row">
+    @foreach (var vehicle in Model.Vehicles)
+    {
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading list-panel-heading"><h3 class="panel-title list-panel-title">@Html.ActionLink(vehicle.Nickname, "WorkDetails", "Vehicles", routeValues: new { id = vehicle.Id.ToString() },
+                                         htmlAttributes: null)</h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="pull-right"><strong>Make</strong></span>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <span class="pull-right"><strong>Model</strong></span>
-                            </div>
-                            <div class="col-sm-6 other">
-                                <span>@vehicle.Model</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <span class="pull-right"><strong>Year</strong></span>
-                            </div>
-                            <div class="col-sm-6 other">
-                                <span>@vehicle.Year</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <span class="pull-right"><strong>Vin</strong></span>
-                            </div>
-                            <div class="col-sm-6 other">
-                                <span>@vehicle.Vin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <span class="pull-right"><strong>Color</strong></span>
-                            </div>
-                            <div class="col-sm-6 other">
-                                <span>@vehicle.Color</span>
-                            </div>
+                        <div class="col-sm-6 other">
+                            <span>@vehicle.Make</span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="pull-right"><strong>Model</strong></span>
+                        </div>
+                        <div class="col-sm-6 other">
+                            <span>@vehicle.Model</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="pull-right"><strong>Year</strong></span>
+                        </div>
+                        <div class="col-sm-6 other">
+                            <span>@vehicle.Year</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="pull-right"><strong>Vin</strong></span>
+                        </div>
+                        <div class="col-sm-6 other">
+                            <span>@vehicle.Vin</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="pull-right"><strong>Color</strong></span>
+                        </div>
+                        <div class="col-sm-6 other">
+                            <span>@vehicle.Color</span>
+                        </div>
+                    </div>
+
                 </div>
+                <div class="panel-footer">@Html.ActionLink(linkText: "Add Oil Change",
+                                         actionName: "CreateOilChangeEvent", 
+                                         controllerName: "Vehicles", 
+                                         routeValues: new { VehicleId = vehicle.Id.ToString()}, 
+                                         htmlAttributes: null)</div>
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 
 
 

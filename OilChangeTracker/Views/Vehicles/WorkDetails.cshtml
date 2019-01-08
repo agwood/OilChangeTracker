@@ -1,0 +1,31 @@
+﻿@model OilChangeTracker.ViewModels.OilChangesViewModel
+
+<div class="row">
+    <h2>Vehicle here</h2>
+    <h3>Oil Change recoreds for (this vehicle here)</h3>
+</div>
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Mileage</th>
+                <th>Oil Filter</th>
+                <th>Oil viscosity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ocevent in @Model.OilChangeEvents)
+            {
+                <tr>
+                    <th scope="row">@ocevent.WorkDate.ToString("yyyy-MM-dd")</th>
+                    <td>@ocevent.Mileage</td>
+                    <td>@ocevent.OilFilterBrand</td>
+                    <td>@ocevent.OilViscosity</td>
+                    <td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

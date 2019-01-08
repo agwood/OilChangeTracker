@@ -21,13 +21,21 @@ namespace OilChangeTracker.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            int vehicleId;
+            
             var userId = User.Identity.GetUserId();
             var viewModel = new OilChangeEventFormViewModel
             {
-                
                 Vehicles = _context.Vehicles.Where(u => u.OwnerId == userId).ToList()
             };
-
+            if (Session["VehicleId"] != null)
+            {
+                vehicleId = Convert.ToInt32(Session["VehicleId"]);
+                viewModel.SelectedVehicleId = vehicleId;
+                Session["VehicleId"] = null;
+            }
+            
+            
             return View(viewModel);
         }
 
@@ -50,7 +58,7 @@ namespace OilChangeTracker.Controllers
                 OilViscosity = viewModel.OilViscosity,
                 OilFilterBrand = viewModel.OilFilterBrand,
                 OilFilterModel = viewModel.OilFilterModel,
-                VehicleId = viewModel.Vehicle,
+                VehicleId = viewModel.SelectedVehicleId,
                 WorkDate = DateTime.Parse(viewModel.WorkDate)
 
             };
@@ -59,5 +67,7 @@ namespace OilChangeTracker.Controllers
 
             return RedirectToAction("Index", "Vehicles");
         }
+
     }
+
 }

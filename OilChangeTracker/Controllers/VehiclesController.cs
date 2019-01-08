@@ -67,6 +67,31 @@ namespace OilChangeTracker.Controllers
             return View("Index", viewModel);
 
         }
+
+        [Authorize]
+        public ActionResult CreateOilChangeEvent(int VehicleId)
+        {
+            Session["VehicleId"] = VehicleId;
+
+            return RedirectToAction("Create", "OilChangeEvents");
+        }
+
+        // GET: Vehicle oil changes for Vehicle
+        [Authorize]
+        public ActionResult WorkDetails(int Id)
+        {
+            //Get Oil changes for this vehicle Id
+            var oilChangeEvents = _context.OilChangeEvents.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate);
+
+            var viewModel = new OilChangesViewModel()
+
+            {
+                OilChangeEvents = oilChangeEvents
+            };
+
+            return View(viewModel);
+
+        }
     }
 
 

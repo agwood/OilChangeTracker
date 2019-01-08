@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201901071739417_AddedOilChangeEventTable.Designer.cs">
       <DependentUpon>201901071739417_AddedOilChangeEventTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901080322524_UpdateOilChangeEventVehiclIdtoInt.cs" />
+    <Compile Include="Migrations\201901080322524_UpdateOilChangeEventVehiclIdtoInt.Designer.cs">
+      <DependentUpon>201901080322524_UpdateOilChangeEventVehiclIdtoInt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\OilChangeEvent.cs" />
@@ -197,6 +201,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ViewModels\OilChangeEventFormViewModel.cs" />
+    <Compile Include="ViewModels\OilChangesViewModel.cs" />
     <Compile Include="ViewModels\VehicleFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -261,6 +266,7 @@
     <Content Include="Views\Vehicles\Create.cshtml" />
     <Content Include="Views\OilChangeEvents\Create.cshtml" />
     <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\Vehicles\WorkDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901071739417_AddedOilChangeEventTable.resx">
       <DependentUpon>201901071739417_AddedOilChangeEventTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901080322524_UpdateOilChangeEventVehiclIdtoInt.resx">
+      <DependentUpon>201901080322524_UpdateOilChangeEventVehiclIdtoInt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

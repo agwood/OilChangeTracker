@@ -41,5 +41,7 @@ namespace OilChangeTracker.ViewModels
         [StringLength(500)]
         [Display(Name = "Miscellaneous Notes")]
         public string OtherNotes { get; set; }
+
+        public int SelectedVehicleId { get; set; }
     }
 }

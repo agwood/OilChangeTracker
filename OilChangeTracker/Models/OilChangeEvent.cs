@@ -11,7 +11,7 @@ namespace OilChangeTracker.Models
         public Vehicle Vehicle{ get; set; }
 
         [Required]
-        public byte VehicleId { get; set; }
+        public int VehicleId { get; set; }
 
         [Required]
         public DateTime WorkDate { get; set; }

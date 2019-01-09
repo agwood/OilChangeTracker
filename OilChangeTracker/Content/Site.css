@@ -38,6 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel > .panel-body {
     background-color: #f0f0f0;
+    text-align: left;
 }
 
 .panel > .panel-footer {
@@ -57,10 +58,30 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
+dl {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.dl-horizontal dt {
+    float: left;
+    width: 60px;
+}
+
+.dl-horizontal dd {
+    margin-left: 80px;
+}
+
+
+    /*.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+}
+
+ul.nav a:hover {
+    color: #000000 !important;
+}*/
+    /* Set width on the form input elements since they're 100% wide by default */
+    input, select, textarea {
     max-width: 280px;
 }
 

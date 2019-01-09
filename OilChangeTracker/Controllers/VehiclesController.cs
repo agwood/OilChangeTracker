@@ -82,11 +82,13 @@ namespace OilChangeTracker.Controllers
         {
             //Get Oil changes for this vehicle Id
             var oilChangeEvents = _context.OilChangeEvents.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate);
+            var vehicle = _context.Vehicles.Where(e => e.Id == Id).FirstOrDefault();
 
             var viewModel = new OilChangesViewModel()
 
             {
-                OilChangeEvents = oilChangeEvents
+                OilChangeEvents = oilChangeEvents,
+                Vehicle = vehicle
             };
 
             return View(viewModel);

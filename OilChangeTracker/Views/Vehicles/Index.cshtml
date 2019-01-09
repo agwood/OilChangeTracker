@@ -8,73 +8,123 @@
 
 
 <div class="row">
+    @*@foreach (var vehicle in Model.Vehicles)
+    {
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading list-panel-heading">
+                    <h3 class="panel-title list-panel-title">
+                        @Html.ActionLink(vehicle.Nickname, "WorkDetails", "Vehicles", routeValues: new { id = vehicle.Id.ToString() },
+htmlAttributes: null)
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="pull-right"><strong>Make</strong></span>
+                    </div>
+                    <div class="col-sm-6 other">
+                        <span>@vehicle.Make</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="pull-right"><strong>Model</strong></span>
+                    </div>
+                    <div class="col-sm-6 other">
+                        <span>@vehicle.Model</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="pull-right"><strong>Year</strong></span>
+                    </div>
+                    <div class="col-sm-6 other">
+                        <span>@vehicle.Year</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="pull-right"><strong>Vin</strong></span>
+                    </div>
+                    <div class="col-sm-6 other">
+                        <span>@vehicle.Vin</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="pull-right"><strong>Color</strong></span>
+                    </div>
+                    <div class="col-sm-6 other">
+                        <span>@vehicle.Color</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                @Html.ActionLink(linkText: "Add Oil Change",
+           actionName: "CreateOilChangeEvent",
+           controllerName: "Vehicles",
+           routeValues: new { VehicleId = vehicle.Id.ToString()},
+           htmlAttributes: null)
+        </div>
+    </div>
+</div>
+}*@
+
+
+
+
     @foreach (var vehicle in Model.Vehicles)
     {
         <div class="col-sm-4">
             <div class="panel panel-default">
-                <div class="panel-heading list-panel-heading"><h3 class="panel-title list-panel-title">@Html.ActionLink(vehicle.Nickname, "WorkDetails", "Vehicles", routeValues: new { id = vehicle.Id.ToString() },
-                                         htmlAttributes: null)</h3></div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <span class="pull-right"><strong>Make</strong></span>
-                        </div>
-                        <div class="col-sm-6 other">
-                            <span>@vehicle.Make</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <span class="pull-right"><strong>Model</strong></span>
-                        </div>
-                        <div class="col-sm-6 other">
-                            <span>@vehicle.Model</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <span class="pull-right"><strong>Year</strong></span>
-                        </div>
-                        <div class="col-sm-6 other">
-                            <span>@vehicle.Year</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <span class="pull-right"><strong>Vin</strong></span>
-                        </div>
-                        <div class="col-sm-6 other">
-                            <span>@vehicle.Vin</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <span class="pull-right"><strong>Color</strong></span>
-                        </div>
-                        <div class="col-sm-6 other">
-                            <span>@vehicle.Color</span>
-                        </div>
-                    </div>
-
+                <div class="panel-heading list-panel-heading">
+                    <h3 class="panel-title list-panel-title">
+                        @Html.ActionLink(vehicle.Nickname, "WorkDetails", "Vehicles", routeValues: new { id = vehicle.Id.ToString() },
+htmlAttributes: null)
+                    </h3>
                 </div>
-                <div class="panel-footer">@Html.ActionLink(linkText: "Add Oil Change",
-                                         actionName: "CreateOilChangeEvent", 
-                                         controllerName: "Vehicles", 
-                                         routeValues: new { VehicleId = vehicle.Id.ToString()}, 
-                                         htmlAttributes: null)</div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Make</dt>
+                        <dd>@vehicle.Make</dd>
+                        <dt>Model</dt>
+                        <dd>@vehicle.Model</dd>
+                        <dt>Year</dt>
+                        <dd>@vehicle.Year</dd>
+                        <dt>Vin</dt>
+                        <dd>@vehicle.Vin</dd>
+                        <dt>Color</dt>
+                        <dd>@vehicle.Color</dd>
+                    </dl>
+                </div>
+                <div class="panel-footer">
+                    @Html.ActionLink(linkText: "Add Oil Change",
+               actionName: "CreateOilChangeEvent",
+               controllerName: "Vehicles",
+               routeValues: new { VehicleId = vehicle.Id.ToString()},
+               htmlAttributes: null)
+                </div>        
+
             </div>
         </div>
     }
+
+
+
+
+
 </div>
 
 
 
-@*@section Scripts
-    {
-        <script type="text/javascript">
-         $(document).ready(function () {
+        @*@section Scripts
+            {
+                <script type="text/javascript">
+                 $(document).ready(function () {
 
-             $('#assets-data-table').DataTable();
-         });
-        </script>
-    }*@
+                     $('#assets-data-table').DataTable();
+                 });
+                </script>
+            }*@

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace OilChangeTracker.ViewModels
 {
 
-    public class OilChangeEventFormViewModel
+    public class OilChangeFormViewModel
     {
         [Required]
         [Display(Name = "Vehicle Nickname")]

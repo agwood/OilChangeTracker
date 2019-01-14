@@ -3,12 +3,12 @@ namespace OilChangeTracker.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedOilChangeEventTable : DbMigration
+    public partial class AddedOilChangeTable : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.OilChangeEvents",
+                "dbo.OilChanges",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -30,9 +30,9 @@ namespace OilChangeTracker.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.OilChangeEvents", "Vehicle_Id", "dbo.Vehicles");
-            DropIndex("dbo.OilChangeEvents", new[] { "Vehicle_Id" });
-            DropTable("dbo.OilChangeEvents");
+            DropForeignKey("dbo.OilChanges", "Vehicle_Id", "dbo.Vehicles");
+            DropIndex("dbo.OilChanges", new[] { "Vehicle_Id" });
+            DropTable("dbo.OilChanges");
         }
     }
 }

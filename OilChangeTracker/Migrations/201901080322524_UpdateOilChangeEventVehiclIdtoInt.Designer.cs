@@ -7,13 +7,13 @@ namespace OilChangeTracker.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdateOilChangeEventVehiclIdtoInt : IMigrationMetadata
+    public sealed partial class UpdateOilChangeVehiclIdtoInt : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateOilChangeEventVehiclIdtoInt));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateOilChangeVehiclIdtoInt));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901080322524_UpdateOilChangeEventVehiclIdtoInt"; }
+            get { return "201901080322524_UpdateOilChangeVehiclIdtoInt"; }
         }
         
         string IMigrationMetadata.Source

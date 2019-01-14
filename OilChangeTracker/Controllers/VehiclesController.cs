@@ -69,11 +69,11 @@ namespace OilChangeTracker.Controllers
         }
 
         [Authorize]
-        public ActionResult CreateOilChangeEvent(int VehicleId)
+        public ActionResult CreateOilChange(int VehicleId)
         {
             Session["VehicleId"] = VehicleId;
 
-            return RedirectToAction("Create", "OilChangeEvents");
+            return RedirectToAction("Create", "OilChanges");
         }
 
         // GET: Vehicle oil changes for Vehicle
@@ -81,13 +81,13 @@ namespace OilChangeTracker.Controllers
         public ActionResult WorkDetails(int Id)
         {
             //Get Oil changes for this vehicle Id
-            var oilChangeEvents = _context.OilChangeEvents.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate);
+            var OilChanges = _context.OilChanges.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate);
             var vehicle = _context.Vehicles.Where(e => e.Id == Id).FirstOrDefault();
 
             var viewModel = new OilChangesViewModel()
 
             {
-                OilChangeEvents = oilChangeEvents,
+                OilChanges = OilChanges,
                 Vehicle = vehicle
             };
 

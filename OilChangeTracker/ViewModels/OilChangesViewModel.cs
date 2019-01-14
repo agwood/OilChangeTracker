@@ -5,7 +5,7 @@ namespace OilChangeTracker.ViewModels
 {
     public class OilChangesViewModel
     {
-        public IEnumerable<OilChangeEvent> OilChangeEvents { get; set; }
+        public IEnumerable<OilChange> OilChanges { get; set; }
         public Vehicle Vehicle { get; set; }
     }
 }

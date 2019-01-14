@@ -1,96 +1,85 @@
 ﻿body {
-    font-family: 'Chivo', sans-serif;
-    font-weight: 300;
-    padding-top: 50px;
-    padding-bottom: 20px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 300;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+  white-space: normal;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-style: italic;
-    color: #0f74ce;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: italic;
+  color: #0f74ce;
 }
-
 .panel {
-    border-radius: 12px
+  border-radius: 12px;
 }
-
 .panel > .panel-heading {
-    background-image: none;
-    background-color: white;
-    color: #0f74ce;
-    border-radius: 12px 12px 0px 0px;
+  background-image: none;
+  background-color: white;
+  color: #0f74ce;
+  border-radius: 12px 12px 0px 0px;
 }
-
 .panel > .panel-body {
-    background-color: #f0f0f0;
-    text-align: left;
+  background-color: #f0f0f0;
+  text-align: left;
 }
-
 .panel > .panel-footer {
-    border-radius: 0px 0px 12px 12px;
+  border-radius: 0px 0px 12px 12px;
 }
-
 .navbar {
-    background-color: #0f74ce;
-    border-color: #0f74ce;
+  background-color: #0f74ce;
+  border-color: #0f74ce;
 }
-
 .navbar-inverse .navbar-nav > li > a {
-    color: #ffffff;
+  color: #ffffff;
 }
-
 .navbar-inverse .navbar-brand {
-    color: #ffffff;
+  color: #ffffff;
 }
-
 dl {
-    margin-top: 0;
-    margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0px;
 }
-
 .dl-horizontal dt {
-    float: left;
-    width: 60px;
+  float: left;
+  width: 60px;
 }
-
 .dl-horizontal dd {
-    margin-left: 80px;
+  margin-left: 80px;
 }
-
-
-    /*.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+/*.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
     color: #fff;
 }
 
 ul.nav a:hover {
     color: #000000 !important;
 }*/
-    /* Set width on the form input elements since they're 100% wide by default */
-    input, select, textarea {
-    max-width: 280px;
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+  max-width: 280px;
 }
-
 /* Custom for OilChangeTracker*/
-
 .font-bold {
-    font-weight: 700;
+  font-weight: 700;
 }
-
 select option:first-child {
-    font-weight: 700;
+  font-weight: 700;
 }

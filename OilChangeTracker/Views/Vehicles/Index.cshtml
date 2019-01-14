@@ -63,7 +63,7 @@ htmlAttributes: null)
             </div>
             <div class="panel-footer">
                 @Html.ActionLink(linkText: "Add Oil Change",
-           actionName: "CreateOilChangeEvent",
+           actionName: "CreateOilChange",
            controllerName: "Vehicles",
            routeValues: new { VehicleId = vehicle.Id.ToString()},
            htmlAttributes: null)
@@ -71,8 +71,6 @@ htmlAttributes: null)
     </div>
 </div>
 }*@
-
-
 
 
     @foreach (var vehicle in Model.Vehicles)
@@ -101,7 +99,7 @@ htmlAttributes: null)
                 </div>
                 <div class="panel-footer">
                     @Html.ActionLink(linkText: "Add Oil Change",
-               actionName: "CreateOilChangeEvent",
+               actionName: "CreateOilChange",
                controllerName: "Vehicles",
                routeValues: new { VehicleId = vehicle.Id.ToString()},
                htmlAttributes: null)

@@ -7,13 +7,13 @@ namespace OilChangeTracker.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedOilChangeEventTable : IMigrationMetadata
+    public sealed partial class AddedOilChangeTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedOilChangeEventTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedOilChangeTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901071739417_AddedOilChangeEventTable"; }
+            get { return "201901071739417_AddedOilChangeTable"; }
         }
         
         string IMigrationMetadata.Source

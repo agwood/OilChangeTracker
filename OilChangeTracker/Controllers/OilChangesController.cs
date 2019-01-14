@@ -8,23 +8,23 @@ using System.Web.Mvc;
 
 namespace OilChangeTracker.Controllers
 {
-    public class OilChangeEventsController : Controller
+    public class OilChangesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public OilChangeEventsController()
+        public OilChangesController()
         {
             _context = new ApplicationDbContext();
         }
 
-        // GET: OilChangeEvents
+        // GET: OilChanges
         [Authorize]
         public ActionResult Create()
         {
             int vehicleId;
             
             var userId = User.Identity.GetUserId();
-            var viewModel = new OilChangeEventFormViewModel
+            var viewModel = new OilChangeFormViewModel
             {
                 Vehicles = _context.Vehicles.Where(u => u.OwnerId == userId).ToList(),
                 VehicleSelectedAlready = false
@@ -34,11 +34,11 @@ namespace OilChangeTracker.Controllers
             {
                 vehicleId = Convert.ToInt32(Session["VehicleId"]);
                 viewModel.SelectedVehicleId = vehicleId;
-                var oilChangeEvents = _context.OilChangeEvents.Where(e => e.VehicleId == vehicleId).OrderByDescending(e => e.WorkDate).FirstOrDefault();
+                var OilChanges = _context.OilChanges.Where(e => e.VehicleId == vehicleId).OrderByDescending(e => e.WorkDate).FirstOrDefault();
                 int mileage;
-                if (oilChangeEvents != null)
+                if (OilChanges != null)
                 {
-                    mileage = oilChangeEvents.Mileage;
+                    mileage = OilChanges.Mileage;
                 }
                 else
                 {
@@ -53,10 +53,10 @@ namespace OilChangeTracker.Controllers
             return View(viewModel);
         }
 
-        // POST: OilChangeEvents
+        // POST: OilChanges
         [Authorize]
         [HttpPost]
-        public ActionResult Create (OilChangeEventFormViewModel viewModel)
+        public ActionResult Create (OilChangeFormViewModel viewModel)
         {
             var userId = User.Identity.GetUserId();
             if (!ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace OilChangeTracker.Controllers
                 return View("Create", viewModel);
             }
 
-            var oilChangeEvent = new OilChangeEvent
+            var OilChange = new OilChange
             {
                 Mileage = viewModel.Mileage,
                 OtherNotes = viewModel.OtherNotes,
@@ -77,7 +77,7 @@ namespace OilChangeTracker.Controllers
                 WorkDate = DateTime.Parse(viewModel.WorkDate)
 
             };
-            _context.OilChangeEvents.Add(oilChangeEvent);
+            _context.OilChanges.Add(OilChange);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Vehicles");
@@ -93,10 +93,10 @@ namespace OilChangeTracker.Controllers
             int mileage;
             if (Id != null)
             {
-                var oilChangeEvents = _context.OilChangeEvents.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate).FirstOrDefault();
-                if (oilChangeEvents != null)
+                var OilChanges = _context.OilChanges.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate).FirstOrDefault();
+                if (OilChanges != null)
                 {
-                    mileage = oilChangeEvents.Mileage;
+                    mileage = OilChanges.Mileage;
                 }
                 else
                 {

@@ -7,7 +7,7 @@ namespace OilChangeTracker.DataContexts
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<OilChangeEvent> OilChangeEvents { get; set; }
+        public DbSet<OilChange> OilChanges { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

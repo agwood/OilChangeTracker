@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OilChangeTracker.Models
 {
-    public class OilChangeEvent
+    public class OilChange
     {
         [Key]
         public int Id { get; set; }

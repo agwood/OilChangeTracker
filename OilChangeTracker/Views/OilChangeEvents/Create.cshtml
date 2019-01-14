@@ -1,4 +1,4 @@
-﻿@model OilChangeTracker.ViewModels.OilChangeEventFormViewModel
+﻿@model OilChangeTracker.ViewModels.OilChangeFormViewModel
 
 
 @{
@@ -11,7 +11,7 @@
 
 <h2>Add an Oil Change</h2>
 
-@using (Html.BeginForm("Create", "OilChangeEvents"))
+@using (Html.BeginForm("Create", "OilChanges"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Vehicle)
@@ -66,7 +66,7 @@
         $(document).ready(function () {
             $("#SelectedVehicleId").change(function () {
                 var id = $(this).val();
-                $.getJSON("@Url.Action("UpdateMileage","OilChangeEvents")", { id: id }, function (response) {
+                $.getJSON("@Url.Action("UpdateMileage","OilChanges")", { id: id }, function (response) {
                    $("#Mileage").attr("placeholder", response);
                 });
             });

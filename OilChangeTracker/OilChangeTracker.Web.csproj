@@ -45,10 +45,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -194,9 +200,14 @@
     <Compile Include="Migrations\201901080322524_UpdateOilChangeEventVehiclIdtoInt.Designer.cs">
       <DependentUpon>201901080322524_UpdateOilChangeEventVehiclIdtoInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901161802505_TableOilChangeEventToOilChange.cs" />
+    <Compile Include="Migrations\201901161802505_TableOilChangeEventToOilChange.Designer.cs">
+      <DependentUpon>201901161802505_TableOilChangeEventToOilChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\OilChangeEvent.cs" />
+    <Compile Include="Models\AutoMapperProfile.cs" />
+    <Compile Include="Models\OilChange.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -274,7 +285,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Vehicles\Create.cshtml" />
-    <Content Include="Views\OilChangeEvents\Create.cshtml" />
+    <Content Include="Views\OilChanges\Create.cshtml" />
     <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\Vehicles\WorkDetails.cshtml" />
   </ItemGroup>
@@ -305,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901080322524_UpdateOilChangeEventVehiclIdtoInt.resx">
       <DependentUpon>201901080322524_UpdateOilChangeEventVehiclIdtoInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901161802505_TableOilChangeEventToOilChange.resx">
+      <DependentUpon>201901161802505_TableOilChangeEventToOilChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

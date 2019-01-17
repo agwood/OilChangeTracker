@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper.QueryableExtensions;
+using Microsoft.AspNet.Identity;
 using OilChangeTracker.DataContexts;
 using OilChangeTracker.Models;
 using OilChangeTracker.ViewModels;
@@ -35,6 +36,9 @@ namespace OilChangeTracker.Controllers
             {
                 return View("Create", viewModel);
             }
+
+
+
             var vehicle = new Vehicle
             {
                 Nickname = viewModel.Nickname,
@@ -57,14 +61,13 @@ namespace OilChangeTracker.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            var vehicles = _context.Vehicles.Where(u => u.OwnerId == userId);
+            var vehicles = _context.Vehicles
+                                    .Where(u => u.OwnerId == userId)
+                                    .ProjectTo<VehicleViewModel>()
+                                    .ToList();
 
-            var viewModel = new VehicleViewModel()
-            {
-                Vehicles = vehicles
-            };
 
-            return View("Index", viewModel);
+            return View("Index", vehicles);
 
         }
 
@@ -73,7 +76,7 @@ namespace OilChangeTracker.Controllers
         {
             Session["VehicleId"] = VehicleId;
 
-            return RedirectToAction("Create", "OilChanges");
+            return RedirectToAction("Create", "OilChanges"); ;
         }
 
         // GET: Vehicle oil changes for Vehicle

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OilChangeTracker;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OilChangeTracker.Controllers;
+using System.Web.Mvc;
 
 namespace OilChangeTracker.Tests.Controllers
 {
@@ -35,7 +30,7 @@ namespace OilChangeTracker.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Tracking oil changes since 2019!", result.ViewBag.Message);
         }
 
         [TestMethod]

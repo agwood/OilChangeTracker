@@ -49,7 +49,6 @@ namespace OilChangeTracker.Controllers
                 Session["VehicleId"] = null;
             }
             
-            
             return View(viewModel);
         }
 
@@ -88,7 +87,6 @@ namespace OilChangeTracker.Controllers
         public ActionResult UpdateMileage(int? Id)
         {
 
-            //do the logic for taking the value for textbox
 
             int mileage;
             if (Id != null)

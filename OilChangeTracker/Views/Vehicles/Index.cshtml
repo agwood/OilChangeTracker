@@ -1,4 +1,4 @@
-﻿@model OilChangeTracker.ViewModels.VehicleViewModel
+﻿@model List<OilChangeTracker.ViewModels.VehicleViewModel>
 
 <div class="row">
     <h2>Vehicle List</h2>
@@ -73,7 +73,7 @@ htmlAttributes: null)
 }*@
 
 
-    @foreach (var vehicle in Model.Vehicles)
+    @foreach (var vehicle in Model)
     {
         <div class="col-sm-4">
             <div class="panel panel-default">

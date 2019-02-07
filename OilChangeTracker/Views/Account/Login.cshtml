@@ -11,7 +11,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-            <h4>Please <strong>@Html.ActionLink("register", "Register")</strong> if you have not previously done so.</h4>
+                <h4>Please <strong>@Html.ActionLink("register", "Register")</strong> if you have not previously done so.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -44,6 +44,9 @@
                 <p>
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
+                <p>
+                    <div id="testforadblock">P.S. I can tell you're using AdBlock and I don't care.</div>
+                </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
@@ -52,12 +55,22 @@
         </section>
     </div>
     @*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>*@
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript" src="~/Scripts/adsbygoogle.js"></script>
+
+    <script type="text/javascript">
+    if(!document.getElementById('vjsDVfQJm')){
+        document.getElementById('testforadblock').style.display='block';
+    } else {
+        document.getElementById('testforadblock').style.display='none';
+    }
+    </script>
 }

@@ -16,6 +16,7 @@ namespace OilChangeTracker.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Feel free to drop me a line!";

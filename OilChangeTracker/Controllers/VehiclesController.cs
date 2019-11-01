@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace OilChangeTracker.Controllers
 {
-
+    [Authorize]
     public class VehiclesController : Controller
     {
         private readonly ApplicationDbContext _context;

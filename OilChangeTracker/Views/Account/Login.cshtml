@@ -44,13 +44,14 @@
                 <p>
                     @Html.ActionLink("New to the site? Register as a new user here!", "Register")
                 </p>
+
+                @* Enable this once you have account confirmation enabled for password reset functionality*@
+                <p>
+                    @Html.ActionLink("I forgot my password!", "ForgotPassword")
+                </p>
                 <p>
                     <div id="testforadblock">You're using AdBlock and I don't care.</div>
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
             }
         </section>
     </div>

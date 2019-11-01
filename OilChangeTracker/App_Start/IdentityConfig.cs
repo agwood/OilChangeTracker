@@ -6,18 +6,52 @@ using Microsoft.Owin.Security;
 using OilChangeTracker.DataContexts;
 using OilChangeTracker.Models;
 using System;
+using System.Configuration;
+using System.Net;
+using System.Net.Configuration;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace OilChangeTracker
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            
+            //get email server info from config
+            string MailFromAddress = WebConfigurationManager.AppSettings["MailFromAddress"];
+            string MailFromName = WebConfigurationManager.AppSettings["MailFromName"];
+            string MailHost = WebConfigurationManager.AppSettings["MailNetworkHost"];
+            int MailPort = Convert.ToInt32(WebConfigurationManager.AppSettings["MailPort"]);
+            string MailPassword = WebConfigurationManager.AppSettings["MailPassword"];
+            bool MailEnableSsl = Convert.ToBoolean(WebConfigurationManager.AppSettings["MailEnableSsl"]);
+
+            MailAddress fromMailAddress = new MailAddress(MailFromAddress, MailFromName);
+            MailAddress toMailAddress = new MailAddress(message.Destination);
+
+            using (var mailMessage = new MailMessage())
+            {
+                mailMessage.From = fromMailAddress;
+                mailMessage.To.Add(toMailAddress);
+                mailMessage.Body = message.Body;
+                mailMessage.Subject = message.Subject;
+                mailMessage.IsBodyHtml = true;
+
+                using (var client = new SmtpClient(MailHost,MailPort))
+                {
+                    client.EnableSsl = MailEnableSsl;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new System.Net.NetworkCredential(MailFromAddress, MailPassword);
+                    await client.SendMailAsync(mailMessage);
+                }
+            }
         }
+
+
     }
 
     public class SmsService : IIdentityMessageService

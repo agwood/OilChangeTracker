@@ -12,7 +12,6 @@ namespace OilChangeTracker.Tests.Controllers
         {
             // Arrange
             HomeController controller = new HomeController();
-            string something = "";
             // Act
             ViewResult result = controller.Index() as ViewResult;
 

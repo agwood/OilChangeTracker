@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "What's this site about?";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>A website for those who like to do and keep track of their own oil changes. Feel free to sign in and check it out!</p>
-<p></p>
+<p>It's a website for those who, like me, like to perform and keep track of their own oil changes. </p>
+<p>If you haven't done so, feel free to @Html.ActionLink("register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" }) and then @Html.ActionLink("log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) to start managaing your garage!</p>

@@ -4,6 +4,7 @@ using OilChangeTracker.DataContexts;
 using OilChangeTracker.Models;
 using OilChangeTracker.ViewModels;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace OilChangeTracker.Controllers
@@ -96,6 +97,67 @@ namespace OilChangeTracker.Controllers
 
             return View(viewModel);
 
+        }
+
+        // GET: /Vehicles/Edit/1
+        public ActionResult Edit(int? Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var userId = User.Identity.GetUserId();
+            var vehicle = _context.Vehicles
+                                        .Where(e => e.Id == Id)
+                                        .Where(u => u.OwnerId == userId)
+                                        .FirstOrDefault();
+            if (vehicle == null)
+            {
+                return HttpNotFound();
+            }
+
+            //var vehicle = new VehicleFormViewModel();
+
+            var vehicleEditFormViewModel = new VehicleEditFormViewModel
+            {
+                Nickname = vehicle.Nickname,
+                Vin = vehicle.Vin,
+                Make = vehicle.Make,
+                Model = vehicle.Model,
+                Year = vehicle.Year,
+                Color = vehicle.Color,
+                Id = vehicle.Id
+            };
+
+            return View(vehicleEditFormViewModel);
+        }
+
+        // POST: /Vehicles/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(VehicleEditFormViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var vehicle = new Vehicle
+                {
+                    Nickname = viewModel.Nickname,
+                    Vin = viewModel.Vin,
+                    Make = viewModel.Make,
+                    Model = viewModel.Model,
+                    Year = viewModel.Year,
+                    Color = viewModel.Color,
+                    OwnerId = User.Identity.GetUserId(),
+                    Id = viewModel.Id
+                };
+
+                _context.Entry(vehicle).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Vehicles");
+            }
+
+            return View(viewModel);
         }
     }
 

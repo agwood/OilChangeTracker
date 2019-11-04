@@ -98,11 +98,17 @@ htmlAttributes: null)
                     </dl>
                 </div>
                 <div class="panel-footer">
-                    @Html.ActionLink(linkText: "Add Oil Change",
-               actionName: "CreateOilChange",
-               controllerName: "Vehicles",
-               routeValues: new { VehicleId = vehicle.Id.ToString()},
-               htmlAttributes: null)
+                    <div class="pull-left">
+                        @Html.ActionLink(linkText: "Add Oil Change",
+                        actionName: "CreateOilChange",
+                        controllerName: "Vehicles",
+                        routeValues: new { VehicleId = vehicle.Id.ToString()},
+                        htmlAttributes: null)
+                    </div>
+                    <div class="pull-right">
+                        @Html.ActionLink("Edit Vehicle", "Edit", new { id = vehicle.Id })
+                    </div>
+                    <div class="clearfix"></div>
                 </div>        
 
             </div>

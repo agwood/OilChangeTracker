@@ -55,7 +55,15 @@ namespace OilChangeTracker.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToLocal("");
+            }
+            else
+            {
+
+                return View();
+            }
         }
 
         //
@@ -152,7 +160,15 @@ namespace OilChangeTracker.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToLocal("");
+            }
+            else
+            {
+
+                return View();
+            }
         }
 
         //

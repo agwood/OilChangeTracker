@@ -24,7 +24,7 @@ namespace OilChangeTracker.Controllers
 
         // GET: OilChanges/Create
         [Authorize]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(int? vehicleId)
         {
             var userId = _userManager.GetUserId(User);
             var vehicles = await _context.Vehicles
@@ -34,7 +34,8 @@ namespace OilChangeTracker.Controllers
             var viewModel = new OilChangeFormViewModel
             {
                 Vehicles = vehicles,
-                VehicleSelectedAlready = false
+                VehicleSelectedAlready = false,
+                SelectedVehicleId = vehicleId ?? 0
             };
 
             return View(viewModel);

@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 // Database
 var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"]

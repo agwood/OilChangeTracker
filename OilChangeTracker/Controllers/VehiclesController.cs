@@ -39,10 +39,21 @@ namespace OilChangeTracker.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    System.Diagnostics.Debug.WriteLine($"ModelState Error: {error.ErrorMessage}");
+                }
                 return View("Create", viewModel);
             }
 
             var userId = _userManager.GetUserId(User);
+            if (string.IsNullOrEmpty(userId))
+            {
+                ModelState.AddModelError("", "User is not authenticated");
+                return View("Create", viewModel);
+            }
+
             var vehicle = new Vehicle
             {
                 Nickname = viewModel.Nickname,

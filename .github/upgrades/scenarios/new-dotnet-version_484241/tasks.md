@@ -4,7 +4,7 @@
 
 This document tracks the execution of the OilChangeTracker upgrade from .NET Framework 4.6.1 to .NET 10.0. Work proceeds from prerequisites → foundation conversion (projects/packages/startup) → infrastructure → feature migration → testing and verification.
 
-**Progress**: 2/6 tasks complete (33%) ![0%](https://progress-bar.xyz/33)
+**Progress**: 3/6 tasks complete (50%) ![0%](https://progress-bar.xyz/50)
 
 ---
 
@@ -32,15 +32,15 @@ This document tracks the execution of the OilChangeTracker upgrade from .NET Fra
 - [✓] (7) Solution builds with 0 errors (**Verify**)
 - [✓] (8) Commit changes with message: "TASK-002: Project conversion, package updates, and foundation setup"
 
-### [▶] TASK-003: Configure routing, dependency injection, and middleware pipeline
+### [✓] TASK-003: Configure routing, dependency injection, and middleware pipeline *(Completed: 2026-03-27 00:06)*
 **References**: Plan §2.1, Plan §2.2, Plan §2.3
 
-- [▶] (1) Migrate routing to ASP.NET Core endpoint routing and remove `RouteConfig.cs`/legacy route registrations per Plan §2.1
-- [ ] (2) Register services in `Program.cs` (AddControllersWithViews, AddDbContext, AddIdentity, AddAuthentication, custom services) per Plan §2.2
-- [ ] (3) Implement middleware pipeline (UseExceptionHandler/UseHsts, UseHttpsRedirection, UseStaticFiles, UseRouting, UseAuthentication, UseAuthorization, custom middleware) per Plan §2.3
-- [ ] (4) Build solution and fix compilation/configuration issues related to DI and middleware
-- [ ] (5) Solution builds with 0 errors (**Verify**)
-- [ ] (6) Commit changes with message: "TASK-003: Configure routing, DI, and middleware pipeline"
+- [✓] (1) Migrate routing to ASP.NET Core endpoint routing and remove `RouteConfig.cs`/legacy route registrations per Plan §2.1
+- [✓] (2) Register services in `Program.cs` (AddControllersWithViews, AddDbContext, AddIdentity, AddAuthentication, custom services) per Plan §2.2
+- [✓] (3) Implement middleware pipeline (UseExceptionHandler/UseHsts, UseHttpsRedirection, UseStaticFiles, UseRouting, UseAuthentication, UseAuthorization, custom middleware) per Plan §2.3
+- [✓] (4) Build solution and fix compilation/configuration issues related to DI and middleware
+- [✓] (5) Solution builds with 0 errors (**Verify**)
+- [✓] (6) Commit changes with message: "TASK-003: Configure routing, DI, and middleware pipeline"
 
 ### [ ] TASK-004: Migrate authentication to ASP.NET Core Identity
 **References**: Plan §3.1
@@ -70,6 +70,7 @@ This document tracks the execution of the OilChangeTracker upgrade from .NET Fra
 - [ ] (3) Re-run tests after fixes
 - [ ] (4) All tests pass with 0 failures and full solution builds with 0 errors (**Verify**)
 - [ ] (5) Commit test and build fixes with message: "TASK-006: Complete testing and build verification"
+
 
 
 

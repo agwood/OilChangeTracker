@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authentication;
+
 
 namespace OilChangeTracker.Models
 {
@@ -17,7 +19,7 @@ namespace OilChangeTracker.Models
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
+        public IList<AuthenticationScheme> OtherLogins { get; set; }
     }
 
     public class FactorViewModel
@@ -81,6 +83,7 @@ namespace OilChangeTracker.Models
     public class ConfigureTwoFactorViewModel
     {
         public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+        public ICollection<SelectListItem> Providers { get; set; }
     }
 }
+

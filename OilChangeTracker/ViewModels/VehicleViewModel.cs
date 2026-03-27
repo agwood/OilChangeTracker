@@ -1,4 +1,4 @@
-﻿using OilChangeTracker.Models;
+using OilChangeTracker.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace OilChangeTracker.ViewModels

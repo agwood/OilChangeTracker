@@ -1,4 +1,4 @@
-﻿@using OilChangeTracker.Models
+@using OilChangeTracker.Models
 @model LoginViewModel
 @{
     ViewBag.Title = "Welcome to Aaron's Oil Change Tracker!";
@@ -8,70 +8,55 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
+            <form asp-action="Login" asp-controller="Account" method="post" class="form-horizontal" role="form">
+                <input type="hidden" asp-for="@ViewBag.ReturnUrl" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                
                 <h4>Please sign in to add and manage your vehicles.</h4>
                 <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <label asp-for="Email" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        <input asp-for="Email" type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
+                
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <label asp-for="Password" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                            <input asp-for="RememberMe" />
+                            <label asp-for="RememberMe"></label>
                         </div>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <button type="submit" class="btn btn-default">Sign in</button>
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("New to the site? Register as a new user here!", "Register")
-                </p>
-
-                @* Enable this once you have account confirmation enabled for password reset functionality*@
-                <p>
-                    @Html.ActionLink("I forgot my password!", "ForgotPassword")
-                </p>
-                <p>
-                    <div id="testforadblock">You're using AdBlock and I don't care.</div>
-                </p>
-            }
+            </form>
         </section>
     </div>
-    @*<div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>*@
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            <p>
+                <a asp-action="Register" asp-controller="Account">Register as a new user</a>
+            </p>
+        </section>
+    </div>
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-    <script type="text/javascript" src="~/Scripts/adsbygoogle.js"></script>
-
-    <script type="text/javascript">
-    if(!document.getElementById('vjsDVfQJm')){
-        document.getElementById('testforadblock').style.display='block';
-    } else {
-        document.getElementById('testforadblock').style.display='none';
-    }
-    </script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

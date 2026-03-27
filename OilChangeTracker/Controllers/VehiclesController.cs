@@ -1,11 +1,13 @@
-﻿using AutoMapper.QueryableExtensions;
-using Microsoft.AspNet.Identity;
+using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using OilChangeTracker.DataContexts;
 using OilChangeTracker.Models;
 using OilChangeTracker.ViewModels;
 using System.Linq;
-using System.Net;
-using System.Web.Mvc;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace OilChangeTracker.Controllers
 {
@@ -13,33 +15,34 @@ namespace OilChangeTracker.Controllers
     public class VehiclesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public VehiclesController()
+        public VehiclesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Vehicles
+        // GET: Vehicles/Create
         [Authorize]
         public ActionResult Create()
         {
             var viewModel = new VehicleFormViewModel();
-            
             return View(viewModel);
         }
 
-        // POST: Vehicles
+        // POST: Vehicles/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(VehicleFormViewModel viewModel)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(VehicleFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 return View("Create", viewModel);
             }
 
-
-
+            var userId = _userManager.GetUserId(User);
             var vehicle = new Vehicle
             {
                 Nickname = viewModel.Nickname,
@@ -48,76 +51,84 @@ namespace OilChangeTracker.Controllers
                 Model = viewModel.Model,
                 Year = viewModel.Year,
                 Color = viewModel.Color,
-                OwnerId = User.Identity.GetUserId()
+                OwnerId = userId
             };
 
             _context.Vehicles.Add(vehicle);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Vehicles");
         }
 
-        // GET: All Vehicles
+        // GET: Vehicles
         [Authorize]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var userId = User.Identity.GetUserId();
-            var vehicles = _context.Vehicles
-                                    .Where(u => u.OwnerId == userId)
-                                    .ProjectTo<VehicleViewModel>()
-                                    .ToList();
+            var userId = _userManager.GetUserId(User);
+            var vehicles = await _context.Vehicles
+                .Where(u => u.OwnerId == userId)
+                .AsNoTracking()
+                .ToListAsync();
 
-
-            return View("Index", vehicles);
-
-        }
-
-        [Authorize]
-        public ActionResult CreateOilChange(int VehicleId)
-        {
-            Session["VehicleId"] = VehicleId;
-
-            return RedirectToAction("Create", "OilChanges"); ;
-        }
-
-        // GET: Vehicle oil changes for Vehicle
-        [Authorize]
-        public ActionResult WorkDetails(int Id)
-        {
-            //Get Oil changes for this vehicle Id
-            var OilChanges = _context.OilChanges.Where(e => e.VehicleId == Id).OrderByDescending(e => e.WorkDate);
-            var vehicle = _context.Vehicles.Where(e => e.Id == Id).FirstOrDefault();
-
-            var viewModel = new OilChangesViewModel()
-
+            // Map to ViewModel using manual mapping
+            var viewModels = vehicles.Select(v => new VehicleViewModel
             {
-                OilChanges = OilChanges,
+                Id = v.Id,
+                Nickname = v.Nickname,
+                Make = v.Make,
+                Model = v.Model,
+                Year = v.Year,
+                Color = v.Color,
+                Vin = v.Vin
+            }).ToList();
+
+            return View("Index", viewModels);
+        }
+
+        // GET: Vehicles/WorkDetails/5
+        [Authorize]
+        public async Task<ActionResult> WorkDetails(int id)
+        {
+            var oilChanges = _context.OilChanges
+                .Where(e => e.VehicleId == id)
+                .OrderByDescending(e => e.WorkDate);
+            
+            var vehicle = await _context.Vehicles
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new OilChangesViewModel
+            {
+                OilChanges = oilChanges,
                 Vehicle = vehicle
             };
 
             return View(viewModel);
-
         }
 
-        // GET: /Vehicles/Edit/1
-        public ActionResult Edit(int? Id)
+        // GET: Vehicles/Edit/5
+        [Authorize]
+        public async Task<ActionResult> Edit(int? id)
         {
-            if (Id == null)
+            if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
-            var userId = User.Identity.GetUserId();
-            var vehicle = _context.Vehicles
-                                        .Where(e => e.Id == Id)
-                                        .Where(u => u.OwnerId == userId)
-                                        .FirstOrDefault();
+            var userId = _userManager.GetUserId(User);
+            var vehicle = await _context.Vehicles
+                .Where(e => e.Id == id)
+                .Where(u => u.OwnerId == userId)
+                .FirstOrDefaultAsync();
+            
             if (vehicle == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-
-            //var vehicle = new VehicleFormViewModel();
 
             var vehicleEditFormViewModel = new VehicleEditFormViewModel
             {
@@ -133,33 +144,33 @@ namespace OilChangeTracker.Controllers
             return View(vehicleEditFormViewModel);
         }
 
-        // POST: /Vehicles/Edit/5
+        // POST: Vehicles/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(VehicleEditFormViewModel viewModel)
+        public async Task<ActionResult> Edit(VehicleEditFormViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var vehicle = new Vehicle
-                {
-                    Nickname = viewModel.Nickname,
-                    Vin = viewModel.Vin,
-                    Make = viewModel.Make,
-                    Model = viewModel.Model,
-                    Year = viewModel.Year,
-                    Color = viewModel.Color,
-                    OwnerId = User.Identity.GetUserId(),
-                    Id = viewModel.Id
-                };
-
-                _context.Entry(vehicle).State = System.Data.Entity.EntityState.Modified;
-                _context.SaveChanges();
-                return RedirectToAction("Index", "Vehicles");
+                return View(viewModel);
             }
 
-            return View(viewModel);
+            var userId = _userManager.GetUserId(User);
+            var vehicle = new Vehicle
+            {
+                Nickname = viewModel.Nickname,
+                Vin = viewModel.Vin,
+                Make = viewModel.Make,
+                Model = viewModel.Model,
+                Year = viewModel.Year,
+                Color = viewModel.Color,
+                OwnerId = userId,
+                Id = viewModel.Id
+            };
+
+            _context.Entry(vehicle).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Vehicles");
         }
     }
-
-
 }

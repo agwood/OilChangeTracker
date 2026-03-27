@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OilChangeTracker.Models;
-using System.Data.Entity;
 
 namespace OilChangeTracker.DataContexts
 {
@@ -9,24 +9,15 @@ namespace OilChangeTracker.DataContexts
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<OilChange> OilChanges { get; set; }
 
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
         {
         }
 
-        public static ApplicationDbContext Create()
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            return new ApplicationDbContext();
+            base.OnModelCreating(builder);
+            // Add any additional model configuration here
         }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Attendance>()
-        //        .HasRequired(a => a.Gig)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
-
-        //    base.OnModelCreating(modelBuilder);
-        //}
     }
 }

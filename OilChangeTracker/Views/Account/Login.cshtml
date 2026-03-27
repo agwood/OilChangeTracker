@@ -9,7 +9,10 @@
     <div class="col-md-8">
         <section id="loginForm">
             <form asp-action="Login" asp-controller="Account" method="post" class="form-horizontal" role="form">
-                <input type="hidden" asp-for="@ViewBag.ReturnUrl" />
+                @if (!string.IsNullOrEmpty(ViewBag.ReturnUrl))
+                {
+                    <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                }
                 <div asp-validation-summary="All" class="text-danger"></div>
                 
                 <h4>Please sign in to add and manage your vehicles.</h4>

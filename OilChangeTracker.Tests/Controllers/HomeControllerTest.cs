@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OilChangeTracker.Controllers;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OilChangeTracker.Tests.Controllers
 {
@@ -12,11 +12,13 @@ namespace OilChangeTracker.Tests.Controllers
         {
             // Arrange
             HomeController controller = new HomeController();
+            
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            IActionResult result = controller.Index();
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         [TestMethod]
@@ -26,10 +28,13 @@ namespace OilChangeTracker.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            IActionResult actionResult = controller.About();
+            var result = actionResult as ViewResult;
 
             // Assert
-            Assert.AreEqual("Tracking oil changes since 2019!", result.ViewBag.Message);
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.ViewData);
+            Assert.AreEqual("Tracking oil changes since 2019!", result.ViewData["Message"]);
         }
 
         [TestMethod]
@@ -39,10 +44,11 @@ namespace OilChangeTracker.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            IActionResult result = controller.Contact();
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
     }
 }

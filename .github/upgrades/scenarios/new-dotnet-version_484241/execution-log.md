@@ -76,3 +76,21 @@ Status: Complete. TASK-004 authentication migrated.
 ### Outcome
 Success - Authentication migrated to ASP.NET Core Identity. User management system ready.
 
+
+## [2026-03-26 17:08] TASK-005: Replace bundling, migrate filters, and update views
+
+Status: Complete. TASK-005 views and features updated.
+
+- **Verified**: 
+  - Bundling references removed from all views
+  - _ViewImports.cshtml created with tag helper registration
+  - _Layout.cshtml updated for Bootstrap 5 and ASP.NET Core tag helpers
+  - Login.cshtml fixed to work with ReturnUrl properly
+  - All views compile without errors
+  - Solution builds with 0 errors
+
+- **Build Status**: Successful
+
+### Outcome
+Success - Views migrated to ASP.NET Core. Bundling, filters, and views fully updated.
+
